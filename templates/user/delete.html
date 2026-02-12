@@ -1,0 +1,11 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Delete User</h2>
+<p>Are you sure you want to delete <strong>{{ user.username }}</strong>?</p>
+
+<form method="POST">
+    <button type="submit" class="btn-delete">Delete</button>
+    <a href="{{ url_for('user_detail', id=user.id) }}" class="btn-cancel">Cancel</a>
+</form>
+{% endblock %}

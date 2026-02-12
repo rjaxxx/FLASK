@@ -1,0 +1,15 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>User Detail</h2>
+
+<div class="user-detail">
+    <p><strong>Username:</strong> {{ user.username }}</p>
+    <p><strong>Email:</strong> {{ user.email }}</p>
+</div>
+
+<div class="actions">
+    <a href="{{ url_for('user_list') }}" class="btn-back">Back to Users</a>
+    <a href="{{ url_for('user_delete', id=user.id) }}" class="btn-delete">Delete User</a>
+</div>
+{% endblock %}

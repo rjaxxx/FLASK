@@ -1,0 +1,11 @@
+{% extends "layout.html"%}
+{% block context %}
+    <h1>Oops! Looks like the page doesn't exist anymore</h1>
+    <p>Redirecting you back to the home page in a few seconds...</p>
+
+    <script>
+        setTimeout(function() {
+            window.location.href = "/"
+        }, 3000);
+    </script>
+{% endblock %}

@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!--  Initialise character set, viewport size, title, icon, and css -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Flask</title>
+    <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
+    <link rel="stylesheet" href="\static\css\style.css">
+</head>
+<body>
+    <!-- Set header and footer -->
+    <header>{% include 'header.html' %}</header>
+    <main>{% block content %}{% endblock %}</main>
+    <footer style="text-align: center;">Rory Collins &copy;2025</footer>
+</body>
+</html>

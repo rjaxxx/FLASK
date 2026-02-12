@@ -1,0 +1,26 @@
+{% extends 'layout.html' %}
+
+{% block content %}
+<h2>Submit Form</h2>
+
+<form method="POST" novalidate>
+    {{ form.hidden_tag() }}
+    
+    <div class="form-group">
+        {{ form.name.label }}
+        {{ form.name(size=32) }}
+        {% if form.name.errors %}
+            <div class="errors">
+                {% for error in form.name.errors %}
+                    <span>{{ error }}</span>
+                {% endfor %}
+            </div>
+        {% endif %}
+    </div>
+
+    <div class="actions">
+        <button type="submit" class="btn-submit">Submit</button>
+        <a href="{{ url_for('home') }}" class="btn-cancel">Cancel</a>
+    </div>
+</form>
+{% endblock %}
