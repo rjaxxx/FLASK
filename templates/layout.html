@@ -4,13 +4,35 @@
     <!--  Initialise character set, viewport size, title, icon, and css -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Flask</title>
+    <title>Flask APP</title>
     <link rel="icon" href="{{ url_for('static', filename='favicon.png') }}" type="image/png">
     <link rel="stylesheet" href="\static\css\style.css">
 </head>
 <body>
-    <!-- Set header and footer -->
-    <header>{% include 'header.html' %}</header>
+    <!-- Navigation bar -->
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="navbar-brand">
+                <a href="{{ url_for('home') }}"><img src="{{ url_for('static', filename='favicon.png') }}" alt="Logo" class="navbar-logo"></a>
+                <div class="navbar-title">Flask</div>
+            </div>
+            <div class="navbar-account">
+                {% if current_user.is_authenticated %}
+                    {% if current_user.is_admin %}
+                        <span>Admin: {{ current_user.username }}</span>
+                        <a href="{{ url_for('user_list') }}">View Users</a>
+                    {% else %}
+                        <span>User: {{ current_user.username }}</span>
+                    {% endif %}
+                    <a href="{{ url_for('logout') }}">Logout</a>
+                {% else %}
+                    <a href="{{ url_for('login') }}">Login</a>
+                    <a href="{{ url_for('register') }}">Register</a>
+                {% endif %}
+            </div>
+        </div>
+    </nav>
+
     <main>{% block content %}{% endblock %}</main>
     <footer style="text-align: center;">Rory Collins &copy;2025</footer>
 </body>

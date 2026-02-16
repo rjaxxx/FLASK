@@ -1,0 +1,94 @@
+@import url('https://fonts.googleapis.com/css2?family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap');
+
+h1 {
+    font-family: "Ubuntu", sans-serif;
+}
+
+p {
+    font-family: "Ubuntu", sans-serif;
+}
+
+a {
+    font-family: "Ubuntu", sans-serif;
+}
+
+h2 {
+    font-family: "Ubuntu", sans-serif;
+}
+
+th {
+    font-family: "Ubuntu", sans-serif;
+}
+
+td {
+    font-family: "Ubuntu", sans-serif;
+}
+
+footer {
+    font-family: "Ubuntu", sans-serif;
+}
+
+span {
+    font-family: "Ubuntu", sans-serif;
+}
+
+label { 
+    font-family: "Ubuntu", sans-serif;
+}
+
+input {
+    font-family: "Ubuntu", sans-serif;
+}
+
+button {
+    font-family: "Ubuntu", sans-serif;
+}
+
+.navbar {
+    background-color: #333;
+    padding: 0;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.navbar-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 20px;
+}
+
+.navbar-title {
+    font-family: "Ubuntu", sans-serif;
+    font-size: 28px;
+    font-weight: bold;
+    color: white;
+}
+
+.navbar-account {
+    display: flex;
+    gap: 20px;
+    align-items: center;
+}
+
+.navbar-account a, .navbar-account span {
+    color: white;
+    text-decoration: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s;
+}
+
+.navbar-account a:hover {
+    background-color: #555;
+}
+
+.navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.navbar-logo {
+    width: 40px;
+    height: 40px;
+}

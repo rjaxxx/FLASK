@@ -1,23 +1,28 @@
-from flask import Flask, render_template, request, redirect, url_for
+from functools import wraps
+
+from flask import Flask, redirect, render_template, request, url_for
+from flask_login import (
+    LoginManager,
+    UserMixin,
+    current_user,
+    login_required,
+    login_user,
+    logout_user,
+)
 from flask_sqlalchemy import SQLAlchemy
-from flask_sqlalchemy import SQLAlchemy
-from sqlalchemy.orm import DeclarativeBase
-from sqlalchemy import Integer, String
-from sqlalchemy.orm import Mapped, mapped_column
 from flask_wtf import FlaskForm
 from flask_wtf.csrf import generate_csrf
+from sqlalchemy.orm import DeclarativeBase, Mapped, mapped_column
+from werkzeug.security import check_password_hash, generate_password_hash
 from wtforms import StringField
 from wtforms.validators import DataRequired
-import secrets
-from flask_login import LoginManager, UserMixin, login_user, logout_user, login_required
-from werkzeug.security import generate_password_hash, check_password_hash
-from functools import wraps
-from flask_login import current_user
 
-import sqlite3
+import secrets
+
 
 class Base(DeclarativeBase):
     pass
+
 
 db = SQLAlchemy(model_class=Base)
 app = Flask(__name__)
@@ -37,7 +42,6 @@ def load_user(user_id):
 
 class MyForm(FlaskForm):
     name = StringField('name', validators=[DataRequired()])
-
 
 
 class User(UserMixin, db.Model):
@@ -61,6 +65,7 @@ with app.app_context():
         db.session.add(admin_user)
         db.session.commit()
 
+
 def admin_required(f):
     @wraps(f)
     def decorated_function(*args, **kwargs):
@@ -68,6 +73,7 @@ def admin_required(f):
             return redirect(url_for('home'))
         return f(*args, **kwargs)
     return decorated_function
+
 
 @app.errorhandler(404)
 def not_found(error):
@@ -77,6 +83,7 @@ def not_found(error):
 @app.route('/')
 def home():
     return render_template('home.html', title='Home')
+
 
 @app.route("/users")
 @admin_required
@@ -91,6 +98,7 @@ def user_detail(id):
     user = db.get_or_404(User, id)
     return render_template("user/detail.html", user=user)
 
+
 @app.route("/user/<int:id>/delete", methods=["GET", "POST"])
 def user_delete(id):
     user = db.get_or_404(User, id)
@@ -101,6 +109,7 @@ def user_delete(id):
         return redirect(url_for("user_list"))
 
     return render_template("user/delete.html", user=user)
+
 
 @app.route('/submit', methods=['GET', 'POST'])
 def submit():
